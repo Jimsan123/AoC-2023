@@ -1,4 +1,3 @@
-# Open the file
 file_path = 'file.txt'  # Replace with your file path
 # file_path = 'testfile2.txt'  # Replace with your file path
 
@@ -6,7 +5,7 @@ def isDigit(input: int):
     for i in range(10):
         if i == input:
             return True
-        
+
 def containsDigitInStr(input: str) -> int | None:
     for i, strDigit in enumerate(digitsInStr):
         found_str_idx: int = input.find(strDigit)
@@ -15,11 +14,10 @@ def containsDigitInStr(input: str) -> int | None:
 
 digitsInStr = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 digit1to9 = [1,2,3,4,5,6,7,8,9]
-    
-        
+
+
 content = ""
 with open(file_path, 'r') as file:
-    # Read the contents
     content = file.read()
 
 first_digits = ""
@@ -47,8 +45,6 @@ for word in content:
                 break
         except:
             pass
-        
-
 
 # last digits
 for word in content:
@@ -61,7 +57,7 @@ for word in content:
         if str_digit != None and str_digit != -1:
             last_digits += str(str_digit)
             break
-        
+
         try:
             if isDigit(int(word[letter_index])):
                 last_digits += word[letter_index]
@@ -75,5 +71,5 @@ print("last digits: ", last_digits)
 answer = 0
 for i in range(len(first_digits)):
     answer += int(first_digits[i] + last_digits[i])
-    
+
 print("Solution: ", answer)
