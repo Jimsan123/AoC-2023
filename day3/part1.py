@@ -1,4 +1,3 @@
-import string
 file_path = "file.txt"
 
 schematics = ""
@@ -8,8 +7,6 @@ with open(file_path, 'r') as file:
 # Find all symbols in the schematic
 symbol_indexes: list[(int, int)] = []
 for row_num, row in enumerate(schematics):
-    # print(row_num, ": ", row)
-
     # Find the specific symbols
     for char_idx, character in enumerate(row):
         if character in "#-*=+@&%$/" and character != ".":
@@ -32,7 +29,6 @@ for row_num, row in enumerate(schematics):
 # print("All found numbers \n", numbers)
 
 # Find all numbers that are close to symbols
-
 approved_numbers: list[int] = []
 
 for row_num, last_char_idx, value in numbers:
@@ -64,12 +60,7 @@ for row_num, last_char_idx, value in numbers:
                 approved_numbers.append(int(value))
                 # print(f"value {value} approved for bellow")
 
-# approved_numbers = approved_numbers)
 print(sum(approved_numbers))
-
-
-
-
 
 """
 467..114..
