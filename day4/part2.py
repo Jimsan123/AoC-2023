@@ -2,11 +2,9 @@ file_path = "testfile.txt"
 
 scratch_cards = []
 with open(file_path, 'r') as file:
-    scratch_cards = file.read().strip().split("\n")
+    scratch_cards = list(file.read().strip().split("\n"))
 
 total_card_count = 0
-card_left_to_look = 0
-
 
 for card_idx, card in enumerate(scratch_cards):
     card_points = 0
@@ -25,15 +23,16 @@ for card_idx, card in enumerate(scratch_cards):
     for number in my_numbers:
         if number in winning_numbers: # Winning number
             card_wins += 1
-            print(f"card_points: {card_points}")
-    
+            print(f"card_wins: {card_wins}")
+
     # Find all winning numbers from copies
     sum_from_copies = 0
 
-    for card_copy_idx in range(card_idx, card_idx+card_wins):
-        card_copy_points = 0
-        card_wins = 0
-        card_copy = card[card_copy_idx]
+    for card_copy_idx in range(card_idx+1, card_idx+card_wins+1):
+        card_copy_wins = 0
+        card_copy = scratch_cards[card_copy_idx]
+
+        print(f"card_copy: {card_copy}")
 
         card_copy_title, copy_values = card_copy.split(":")
         copy_winning_numbers, copy_my_numbers = values.split("|")
@@ -42,9 +41,10 @@ for card_idx, card in enumerate(scratch_cards):
 
         for number in copy_my_numbers:
             if number in copy_winning_numbers:
-                # todo: card_wins += 1
-                print(f"card_copy_points: {card_copy_points}")
-        sum_from_copies += card_copy_points
+                card_copy_wins += 1
+        sum_from_copies += card_copy_wins
+
+    total_card_count += sum_from_copies
 
 
 print(total_card_count)
